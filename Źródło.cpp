@@ -31,7 +31,7 @@ int main()
 
 	int selectedRow = 0, selectedColumn = 0;
 
-	SMALL_RECT windowRect = { 0, 0, 100, 100 };
+	SMALL_RECT windowRect = { 0, 0, gridWidth, gridHeight };
 	SetConsoleWindowInfo(h, TRUE, &windowRect);
 
 	setFlicker(true);
@@ -104,7 +104,6 @@ int main()
 			run = false;
 		}
 
-		//draw
 		for (int row = 0; row < gridWidth; ++row)
 		{
 			for (int column = 0; column < gridHeight; ++column)
@@ -127,7 +126,6 @@ int main()
 			}
 		}
 
-		//update
 		for (int row = 0; row < gridWidth; ++row)
 		{
 			for (int column = 0; column < gridHeight; ++column)
@@ -170,6 +168,8 @@ int main()
 		memcpy(grid, newGrid, sizeof(bool) * gridWidth * gridHeight);
 		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 	}
+
+	std::cout << std::format("\x1b[48;2;0;0;0m");
 
 	setFlicker(true);
 
